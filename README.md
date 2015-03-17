@@ -17,3 +17,5 @@ angular.module('app', ['bs-tooltip']);
 ```html
 <input type="text" bs-tooltip="Hey this is the messag"/>
 ```
+## Demo
+http://beanstalkhq.github.io/bs-tooltip/
