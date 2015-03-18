@@ -1,6 +1,6 @@
 {
   "name": "bs-tooltip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component Description",
   "main": "build/bs-tooltip.js",
   "scripts": {

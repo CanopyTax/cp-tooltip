@@ -49,7 +49,7 @@ angular.module('bs-tooltip')
 
 				function closeTooltip() {
 					tooltipDisplayed = false;
-					tooltipEl.remove();
+					if(tooltipEl) tooltipEl.remove();
 				}
 			}
 		}
