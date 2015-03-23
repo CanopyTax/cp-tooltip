@@ -43,8 +43,21 @@ angular.module('bs-tooltip')
 						`
 						<span class="bs-tooltip" style="left:${e.clientX}px; top:${e.clientY + 20}px;">${attr.bsTooltip}</span>
 						`
-					);
+					).hide();
 					$('body').append(tooltipEl)
+
+					var width = tooltipEl.width();
+					var documentWidth = $(document).width();
+
+					var leftPos = e.clientX;
+
+					if((leftPos + width + 10) > documentWidth) {
+						leftPos = leftPos - (width + 15);
+					}
+
+					tooltipEl.css({
+						left: leftPos
+					}).show();
 				}
 
 				function closeTooltip() {
