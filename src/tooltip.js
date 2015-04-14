@@ -9,23 +9,25 @@ angular.module('bs-tooltip')
 				var timeout1, timeout2;
 				var tooltipEl;
 				var tooltipDisplayed = false;
+				var instant = attr.bsTooltipInstant || attr.bsTooltipInstant == "";
 
 				/** Setup main hover event for the tooltip **/
-				el.on('mousemove.bstooltip'+id, function(e) {
+				el.on('mouseenter.bstooltip'+id, function(e) {
 					if(timeout1) clearTimeout(timeout1);
+					if (timeout2) clearTimeout(timeout2);
 					timeout1 = setTimeout(function() {
 						if(!tooltipDisplayed) {
 							renderTooltip(e);
 						}
-					}, TIMEOUT);
+					}, instant ? 100 : TIMEOUT);
 				});
 
-				el.on('mouseout.bstooltip'+id, function() {
+				el.on('mouseleave.bstooltip'+id, function() {
 					if(timeout2) clearTimeout(timeout2);
 					timeout2 = setTimeout(function() {
 						clearTimeout(timeout1);
 						closeTooltip();
-					}, 500);
+					}, instant ? 100 : 500);
 				});
 
 				/** Cleanup events **/
@@ -33,15 +35,19 @@ angular.module('bs-tooltip')
 					closeTooltip();
 					clearTimeout(timeout1);
 					clearTimeout(timeout2);
-					el.off('mousemove.bstooltip'+id);
-					el.off('mouseout.bstooltip'+id);
+					el.off('mouseenter.bstooltip'+id);
+					el.off('mouseleave.bstooltip'+id);
 				});
 
 				function renderTooltip(e) {
 					tooltipDisplayed = true;
+
+					var rect = el[0].getBoundingClientRect();
+					var topScroll = $(document).scrollTop();
+
 					tooltipEl = $(
 						`
-						<span class="bs-tooltip" style="left:${e.clientX}px; top:${e.clientY + 20}px;">${attr.bsTooltip}</span>
+						<span class="bs-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${attr.bsTooltip}</span>
 						`
 					).hide();
 					$('body').append(tooltipEl)
@@ -49,7 +55,7 @@ angular.module('bs-tooltip')
 					var width = tooltipEl.width();
 					var documentWidth = $(document).width();
 
-					var leftPos = e.clientX;
+					var leftPos = rect.left;
 
 					if((leftPos + width + 10) > documentWidth) {
 						leftPos = leftPos - (width + 15);
