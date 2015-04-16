@@ -17,5 +17,9 @@ angular.module('app', ['bs-tooltip']);
 ```html
 <input type="text" bs-tooltip="Hey this is the messag"/>
 ```
+If you'd like the tooltip instantly render, include the `bs-tooltip-instant` attribute:
+```html
+<input type="text" bs-tooltip="Hey this is the messag" bs-tooltip-instant/>
+```
 ## Demo
 http://beanstalkhq.github.io/bs-tooltip/
