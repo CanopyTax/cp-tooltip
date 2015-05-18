@@ -53,16 +53,23 @@ angular.module('bs-tooltip')
 					$('body').append(tooltipEl)
 
 					var width = tooltipEl.width();
+					var height = tooltipEl.height();
 					var documentWidth = $(document).width();
 
 					var leftPos = rect.left;
+					var topPos = topScroll + rect.top + rect.height + 4;
 
 					if((leftPos + width + 10) > documentWidth) {
 						leftPos = leftPos - (width + 15);
 					}
 
+					if((topPos + height) > window.innerHeight) {
+						topPos = topPos - (height + 40);
+					}
+
 					tooltipEl.css({
-						left: leftPos
+						left: leftPos,
+						top: topPos
 					}).show();
 				}
 
