@@ -1,7 +1,7 @@
-describe('multi-selector', function() {
+describe('tooltip', function() {
 	var elm, scope, input;
 
-	beforeEach(module('bs-tooltip'));
+	beforeEach(module('cp-tooltip'));
 	beforeEach(function() {
 		jasmine.clock().install();
 	});
@@ -9,7 +9,7 @@ describe('multi-selector', function() {
 	beforeEach(inject(function($rootScope, $compile, $filter) {
 		elm = angular.element(
 			'<div>' +
-				'<input type="text" bs-tooltip="hello">' +
+				'<input type="text" cp-tooltip="hello">' +
 			'</div>'
 		);
 
@@ -34,7 +34,7 @@ describe('multi-selector', function() {
 		elm.find('input').trigger(e);
 		jasmine.clock().tick(1001);
 
-		var tooltip = $('.bs-tooltip');
+		var tooltip = $('.cp-tooltip');
 		expect(tooltip.length).toBe(1);
 	});
 
@@ -45,7 +45,7 @@ describe('multi-selector', function() {
 
 		elm.find('input').trigger(e);
 		jasmine.clock().tick(1001);
-		var tooltip = $('.bs-tooltip');
+		var tooltip = $('.cp-tooltip');
 		var position = tooltip.position();
 		expect(position.left).toBe(100);
 		expect(position.top).toBe(220);
@@ -65,7 +65,7 @@ describe('multi-selector', function() {
 		elm.find('input').trigger(e);
 		jasmine.clock().tick(1001);
 
-		var tooltip = $('.bs-tooltip');
+		var tooltip = $('.cp-tooltip');
 		var position = tooltip.position();
 		expect(position.left).toBe(100);
 		expect(position.top).toBe(230);
@@ -79,12 +79,12 @@ describe('multi-selector', function() {
 		elm.find('input').trigger(e);
 		jasmine.clock().tick(1001);
 
-		expect($('.bs-tooltip').length).toBe(1);
+		expect($('.cp-tooltip').length).toBe(1);
 
 		e = $.Event('mouseout');
 		elm.find('input').trigger(e);
 		jasmine.clock().tick(501);
 
-		expect($('.bs-tooltip').length).toBe(0);
+		expect($('.cp-tooltip').length).toBe(0);
 	});
 });

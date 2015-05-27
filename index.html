@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Beanstalk Tooltip</title>
+	<title>Canopy Tooltip</title>
 	<!-- TOOD(vojta): create simple favicon and cache it -->
 	<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII="
 	rel="icon" type="image/x-icon" />
@@ -10,35 +10,34 @@
 </head>
 
 <body ng-app="app">
-	<div class="bss-topnav" ng-app>
-		<div class="bss-topnav__bar"></div>
-		<div class="bss-topnav__content" data-reactid=".0.0.1"><span class="bss-topnav__content__brand" data-reactid=".0.0.1.0"><img src="logo.png" alt="Company Logo" data-reactid=".0.0.1.0.0"></span>
-			<ul class="bss-topnav__content__menu">
-				<li><a href="https://github.com/Beanstalkhq/bs-tooltip">Beanstalk Tooltip on Github</a></li>
+	<div class="cps-topnav" ng-app>
+		<div class="cps-topnav__bar"></div>
+		<div class="cps-topnav__content" data-reactid=".0.0.1"><span class="cps-topnav__content__brand" data-reactid=".0.0.1.0"><img src="logo.png" alt="Company Logo" data-reactid=".0.0.1.0.0"></span>
+			<ul class="cps-topnav__content__menu">
+				<li><a href="https://github.com/canopytax/cp-tooltip">Canopy Tooltip on Github</a></li>
 			</ul>
 		</div>
 	</div>
-	<div class="bss-nav-content +full">
-		<div class="bss-fixed-focus bss-card">
-			<div class="bss-card__header bss-subheader">
-				Beanstalk Tooltip
+	<div class="cps-nav-content +full">
+		<div class="cps-fixed-focus cps-card">
+			<div class="cps-card__header cps-subheader">
+				Canopy Tooltip
 			</div>
-			<div class="bss-card__body" ng-controller="testController">
+			<div class="cps-card__body" ng-controller="testController">
 				<div class="form-group">
 					<label>Assigned to (this input has a tooltip)</label>
-					<input type="text" bs-tooltip="This is the message" bs-tooltip-instant>
+					<input type="text" cp-tooltip="This is the message" cp-tooltip-instant>
 				</div>
 			</div>
 		</div>
 	</div>
-	<link type="text/css" href="node_modules/bs-styleguide/index.css" rel="stylesheet">
-	<link type="text/css" href="https://s3.amazonaws.com/icomoon.io/57942/BeanstalkIcons/style.css" rel="stylesheet">
+	<link type="text/css" href="node_modules/canopy-styleguide/build/styleguide.css" rel="stylesheet">
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
 	<script type="text/javascript" src="node_modules/angular-mocks/angular-mocks.js"></script>
-	<script type="text/javascript" src="build/bs-tooltip.js"></script>
+	<script type="text/javascript" src="build/cp-tooltip.js"></script>
 	<script>
-		angular.module('app', ['bs-tooltip'])
+		angular.module('app', ['cp-tooltip'])
 			.controller('testController', function($scope) {
 			});
 	</script>

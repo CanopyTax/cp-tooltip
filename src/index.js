@@ -1,6 +1,6 @@
 var jquery = require('jquery');
 var angular = require('angular');
-angular.module('bs-tooltip', []);
+angular.module('cp-tooltip', []);
 
 require('./tooltip.js');
 require('./tooltip.css');

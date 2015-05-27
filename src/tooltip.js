@@ -1,5 +1,5 @@
-angular.module('bs-tooltip')
-	.directive('bsTooltip', function() {
+angular.module('cp-tooltip')
+	.directive('cpTooltip', function() {
 		var idCounter = 0;
 		var TIMEOUT = 1000;
 		return {
@@ -9,10 +9,10 @@ angular.module('bs-tooltip')
 				var timeout1, timeout2;
 				var tooltipEl;
 				var tooltipDisplayed = false;
-				var instant = attr.bsTooltipInstant || attr.bsTooltipInstant == "";
+				var instant = attr.cpTooltipInstant || attr.cpTooltipInstant == "";
 
 				/** Setup main hover event for the tooltip **/
-				el.on('mouseenter.bstooltip'+id, function(e) {
+				el.on('mouseenter.cptooltip'+id, function(e) {
 					if(timeout1) clearTimeout(timeout1);
 					if (timeout2) clearTimeout(timeout2);
 					timeout1 = setTimeout(function() {
@@ -22,7 +22,7 @@ angular.module('bs-tooltip')
 					}, instant ? 100 : TIMEOUT);
 				});
 
-				el.on('mouseleave.bstooltip'+id, function() {
+				el.on('mouseleave.cptooltip'+id, function() {
 					if(timeout2) clearTimeout(timeout2);
 					timeout2 = setTimeout(function() {
 						clearTimeout(timeout1);
@@ -35,8 +35,8 @@ angular.module('bs-tooltip')
 					closeTooltip();
 					clearTimeout(timeout1);
 					clearTimeout(timeout2);
-					el.off('mouseenter.bstooltip'+id);
-					el.off('mouseleave.bstooltip'+id);
+					el.off('mouseenter.cptooltip'+id);
+					el.off('mouseleave.cptooltip'+id);
 				});
 
 				function renderTooltip(e) {
@@ -47,7 +47,7 @@ angular.module('bs-tooltip')
 
 					tooltipEl = $(
 						`
-						<span class="bs-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${attr.bsTooltip}</span>
+						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${attr.cpTooltip}</span>
 						`
 					).hide();
 					$('body').append(tooltipEl)

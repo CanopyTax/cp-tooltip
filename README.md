@@ -1,25 +1,25 @@
-# bs-tooltip
-A simple tooltip widget for the beanstalk style guide
+# cp-tooltip
+A simple tooltip widget for the canopy style guide
 
 ## Requirements
  - Angular 1.3
  - jQuery
  
 ## Installation
-1. Install through npm `npm install --save bs-tooltip`
-2. Make sure your app depends upon 'bs-tooltip':
+1. Install through npm `npm install --save cp-tooltip`
+2. Make sure your app depends upon 'cp-tooltip':
 ```javascript
-angular.module('app', ['bs-tooltip']);
+angular.module('app', ['cp-tooltip']);
 ```
 
 ## Usage
 ### Markup:
 ```html
-<input type="text" bs-tooltip="Hey this is the messag"/>
+<input type="text" cp-tooltip="Hey this is the messag"/>
 ```
-If you'd like the tooltip instantly render, include the `bs-tooltip-instant` attribute:
+If you'd like the tooltip instantly render, include the `cp-tooltip-instant` attribute:
 ```html
-<input type="text" bs-tooltip="Hey this is the messag" bs-tooltip-instant/>
+<input type="text" cp-tooltip="Hey this is the messag" cp-tooltip-instant/>
 ```
 ## Demo
-http://beanstalkhq.github.io/bs-tooltip/
+http://canopytax.github.io/cp-tooltip/
