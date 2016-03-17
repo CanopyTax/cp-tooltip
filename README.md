@@ -4,7 +4,7 @@ A simple tooltip widget for the canopy style guide
 ## Requirements
  - Angular 1.3
  - jQuery
- 
+
 ## Installation
 1. Install through npm `npm install --save cp-tooltip`
 2. Make sure your app depends upon 'cp-tooltip':
@@ -15,11 +15,16 @@ angular.module('app', ['cp-tooltip']);
 ## Usage
 ### Markup:
 ```html
-<input type="text" cp-tooltip="Hey this is the messag"/>
+<input type="text" cp-tooltip="Hey this is the message"/>
 ```
 If you'd like the tooltip instantly render, include the `cp-tooltip-instant` attribute:
 ```html
-<input type="text" cp-tooltip="Hey this is the messag" cp-tooltip-instant/>
+<input type="text" cp-tooltip="Hey this is the message" cp-tooltip-instant/>
+```
+
+If you want the tooltip to stay visible until the user clicks away, include the `cp-tooltip-dismiss-on-click` attribute. This is useful when you want to allow the user to highlight and copy the contents of the tooltip.
+```html
+<input type="text" cp-tooltip="Hey this is the message" cp-tooltip-dismiss-on-click/>
 ```
 ## Demo
 http://canopytax.github.io/cp-tooltip/

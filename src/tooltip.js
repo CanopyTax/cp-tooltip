@@ -10,6 +10,7 @@ angular.module('cp-tooltip')
 				var tooltipEl;
 				var tooltipDisplayed = false;
 				var instant = attr.cpTooltipInstant || attr.cpTooltipInstant == "";
+				var dismissOnClick = attr.cpTooltipDismissOnClick || attr.cpTooltipDismissOnClick == "";
 
 				/** Setup main hover event for the tooltip **/
 				el.on('mouseenter.cptooltip'+id, function(e) {
@@ -23,11 +24,11 @@ angular.module('cp-tooltip')
 				});
 
 				el.on('mouseleave.cptooltip'+id, function() {
-					if(timeout2) clearTimeout(timeout2);
-					timeout2 = setTimeout(function() {
-						clearTimeout(timeout1);
-						closeTooltip();
-					}, instant ? 100 : 500);
+					if(!dismissOnClick) dismissTooltip();
+				});
+
+				$(document).on('click', function(e) {
+					if(dismissOnClick && !$(e.target).hasClass('cp-tooltip')) dismissTooltip();
 				});
 
 				/** Cleanup events **/
@@ -71,6 +72,14 @@ angular.module('cp-tooltip')
 						left: leftPos,
 						top: topPos
 					}).show();
+				}
+
+				function dismissTooltip() {
+					if(timeout2) clearTimeout(timeout2);
+					timeout2 = setTimeout(function() {
+						clearTimeout(timeout1);
+						closeTooltip();
+					}, instant ? 100 : 500);
 				}
 
 				function closeTooltip() {
