@@ -22,9 +22,9 @@ If you'd like the tooltip instantly render, include the `cp-tooltip-instant` att
 <input type="text" cp-tooltip="Hey this is the message" cp-tooltip-instant/>
 ```
 
-If you want the tooltip to stay visible until the user clicks away, include the `cp-tooltip-dismiss-on-click` attribute. This is useful when you want to allow the user to highlight and copy the contents of the tooltip.
+If you want the tooltip to stay visible while the user interacts with the tooltip itself, include the `cp-tooltip-allow-interaction` attribute. This is useful when you want to allow the user to highlight and copy the contents of the tooltip.
 ```html
-<input type="text" cp-tooltip="Hey this is the message" cp-tooltip-dismiss-on-click/>
+<input type="text" cp-tooltip="Hey this is the message" cp-tooltip-allow-interaction/>
 ```
 ## Demo
 http://canopytax.github.io/cp-tooltip/

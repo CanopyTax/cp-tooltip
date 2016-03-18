@@ -13,26 +13,26 @@ describe('tooltip', function() {
 			'</div>'
 		);
 
-		dismissClickElm = angular.element(
+		allowInteractionElm = angular.element(
 			'<div>' +
-				'<input type="text" cp-tooltip="hello" cp-tooltip-dismiss-on-click>' +
+				'<input type="text" cp-tooltip="hello" cp-tooltip-allow-interaction>' +
 			'</div>'
 		);
 
 		$('body').append(elm);
-		$('body').append(dismissClickElm);
+		$('body').append(allowInteractionElm);
 
 		scope = $rootScope.$new();
 
 		$compile(elm)(scope);
-		$compile(dismissClickElm)(scope);
+		$compile(allowInteractionElm)(scope);
 	}));
 
 	afterEach(function() {
 		jasmine.clock().uninstall();
 		scope.$broadcast('$destroy');
 		elm.remove();
-		dismissClickElm.remove();
+		allowInteractionElm.remove();
 	});
 
 	it('Should display the tooltip when the mouse moves over', function() {
@@ -75,29 +75,29 @@ describe('tooltip', function() {
 		expect($('.cp-tooltip').length).toBe(0);
 	});
 
-	it('Should not hide the tooltip until clicked outside when using the cp-tooltip-dismiss-on-click attr', function() {
+	it('Should not hide the tooltip until clicked outside when using the cp-tooltip-allow-interaction attr', function() {
 		var e = $.Event('mouseover');
 
-		dismissClickElm.find('input').trigger(e);
+		// Show tooltip
+		allowInteractionElm.find('input').trigger(e);
 		jasmine.clock().tick(1001);
 
 		expect($('.cp-tooltip').length).toBe(1);
 
+		// Move mouse outside of toggle element
 		e = $.Event('mouseout');
-		dismissClickElm.find('input').trigger(e);
-		jasmine.clock().tick(501);
+		allowInteractionElm.find('input').trigger(e);
+		jasmine.clock().tick(200);
 
-		expect($('.cp-tooltip').length).toBe(1);
-
-		e = $.Event('click');
+		// Move mouse to tooltip element, tooltip should still be visible
+		e = $.Event('mouseover');
 		$('.cp-tooltip').trigger(e);
-
 		jasmine.clock().tick(501);
-
 		expect($('.cp-tooltip').length).toBe(1);
 
-		e = $.Event('click');
-		dismissClickElm.find('input').trigger(e);
+		// Move mouse outside of tooltip element, tooltip should be dismissed
+		e = $.Event('mouseout');
+		$('.cp-tooltip').trigger(e);
 		jasmine.clock().tick(501);
 
 		expect($('.cp-tooltip').length).toBe(0);
