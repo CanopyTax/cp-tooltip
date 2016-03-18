@@ -10,7 +10,7 @@ angular.module('cp-tooltip')
 				var tooltipEl;
 				var tooltipDisplayed = false;
 				var instant = attr.cpTooltipInstant || attr.cpTooltipInstant == "";
-				var dismissOnClick = attr.cpTooltipDismissOnClick || attr.cpTooltipDismissOnClick == "";
+				var allowInteraction = attr.cpTooltipAllowInteraction || attr.cpTooltipAllowInteraction == "";
 
 				/** Setup main hover event for the tooltip **/
 				el.on('mouseenter.cptooltip'+id, function(e) {
@@ -23,13 +23,7 @@ angular.module('cp-tooltip')
 					}, instant ? 100 : TIMEOUT);
 				});
 
-				el.on('mouseleave.cptooltip'+id, function() {
-					if(!dismissOnClick) dismissTooltip();
-				});
-
-				$(document).on('click', function(e) {
-					if(dismissOnClick && !$(e.target).hasClass('cp-tooltip')) dismissTooltip();
-				});
+				el.on('mouseleave.cptooltip'+id, dismissTooltip);
 
 				/** Cleanup events **/
 				scope.$on('$destroy', function() {
@@ -51,7 +45,13 @@ angular.module('cp-tooltip')
 						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${attr.cpTooltip}</span>
 						`
 					).hide();
-					$('body').append(tooltipEl)
+					$('body').append(tooltipEl);
+
+					tooltipEl.on('mouseenter.cptooltip'+id, function(e) {
+						if(timeout2) clearTimeout(timeout2);
+					});
+
+					tooltipEl.on('mouseleave.cptooltip'+id, dismissTooltip);
 
 					var width = tooltipEl.width();
 					var height = tooltipEl.height();
