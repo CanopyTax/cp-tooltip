@@ -42,7 +42,7 @@ angular.module('cp-tooltip')
 
 					tooltipEl = $(
 						`
-						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${attr.cpTooltip}</span>
+						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${encodeHTML(attr.cpTooltip)}</span>
 						`
 					).hide();
 					$('body').append(tooltipEl);
@@ -85,6 +85,10 @@ angular.module('cp-tooltip')
 				function closeTooltip() {
 					tooltipDisplayed = false;
 					if(tooltipEl) tooltipEl.remove();
+				}
+
+				function encodeHTML(str) {
+					return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 				}
 			}
 		}
