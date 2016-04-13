@@ -1,5 +1,5 @@
 angular.module('cp-tooltip')
-	.directive('cpTooltip', function() {
+	.directive('cpTooltip', ['$sanitize', function($sanitize) {
 		var idCounter = 0;
 		var TIMEOUT = 1000;
 		return {
@@ -42,7 +42,7 @@ angular.module('cp-tooltip')
 
 					tooltipEl = $(
 						`
-						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${encodeHTML(attr.cpTooltip)}</span>
+						<span class="cp-tooltip" style="left:${e.clientX}px; top:${topScroll + rect.top + rect.height + 4}px;">${$sanitize(attr.cpTooltip)}</span>
 						`
 					).hide();
 					$('body').append(tooltipEl);
@@ -86,10 +86,6 @@ angular.module('cp-tooltip')
 					tooltipDisplayed = false;
 					if(tooltipEl) tooltipEl.remove();
 				}
-
-				function encodeHTML(str) {
-					return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-				}
 			}
 		}
-	});
+	}]);
