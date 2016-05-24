@@ -48,7 +48,7 @@ angular.module('cp-tooltip')
 					$('body').append(tooltipEl);
 
 					tooltipEl.on('mouseenter.cptooltip'+id, function(e) {
-						if(timeout2) clearTimeout(timeout2);
+						if(allowInteraction && timeout2) clearTimeout(timeout2);
 					});
 
 					tooltipEl.on('mouseleave.cptooltip'+id, dismissTooltip);
