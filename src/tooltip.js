@@ -24,6 +24,10 @@ angular.module('cp-tooltip')
 				});
 
 				el.on('mouseleave.cptooltip'+id, dismissTooltip);
+				
+				if(!allowInteraction){
+					el.on('click', dismissTooltip);
+				}
 
 				/** Cleanup events **/
 				scope.$on('$destroy', function() {
@@ -32,6 +36,10 @@ angular.module('cp-tooltip')
 					clearTimeout(timeout2);
 					el.off('mouseenter.cptooltip'+id);
 					el.off('mouseleave.cptooltip'+id);
+					
+					if(!allowInteraction){ 
+						el.off('click');
+					}
 				});
 
 				function renderTooltip(e) {
