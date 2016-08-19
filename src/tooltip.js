@@ -38,7 +38,7 @@ angular.module('cp-tooltip')
 					el.off('mouseleave.cptooltip'+id);
 					
 					if(!allowInteraction){ 
-						el.off('click');
+						el.off('click', dismissTooltip);
 					}
 				});
 
