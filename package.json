@@ -1,6 +1,6 @@
 {
   "name": "cp-tooltip",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Component Description",
   "main": "build/cp-tooltip.js",
   "scripts": {
